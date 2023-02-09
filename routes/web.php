@@ -35,7 +35,9 @@ Route::controller(\App\Http\Controllers\AdminController::class)
         Route::get('/routes/{id}', 'editRouteAction')->name('route.edit');
         Route::get('/responses/{id}', 'editResponseAction')->name('response.edit');
 
-
+        Route::get('/routes/delete/{id}', 'deleteRoute')->name('route.delete');
+        Route::get('/requests/delete/{id}', 'deleteRequest')->name('request.delete');
+        Route::get('/responses/delete/{id}', 'deleteResponse')->name('response.delete');
     });
 
 Route::controller(MainController::class)->group(function () {

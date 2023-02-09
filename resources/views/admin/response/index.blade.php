@@ -26,21 +26,19 @@
             <th>Http code</th>
         </tr>
         @foreach ($responses as $response)
-            <tr>
-                <td>{{ $response->body }}</td>
-                <td>{{ $response->request->route->name }}</td>
-                <td>{{ $response->request->name }}</td>
-                <td>{{ $response->http_code }}</td>
-                <td>
-                    <a class="btn btn-primary" href="{{ route('response.edit', ['id' => $response->id]) }}">Edit</a>
-                    <form action="#" method="POST">
-
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-            </tr>
+            @if ($response->request && $response->request->route)
+                <tr>
+                    <td>{{ $response->body }}</td>
+                    <td>{{ $response->request->route->name }}</td>
+                    <td>{{ $response->request->name }}</td>
+                    <td>{{ $response->http_code }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ route('response.edit', ['id' => $response->id]) }}">Edit</a>
+                        <a class="btn btn-danger"
+                           href="{{ route('response.delete', ['id' => $response->id]) }}">Delete</a>
+                    </td>
+                </tr>
+            @endif
         @endforeach
     </table>
 

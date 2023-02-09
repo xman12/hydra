@@ -33,12 +33,7 @@
                 </td>
                 <td>
                     <a class="btn btn-primary" href="{{ route('request.edit', ['id' => $request->id]) }}">Edit</a>
-                    <form action="#" method="POST">
-
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                    <a class="btn btn-danger" href="{{ route('request.delete', ['id' => $request->id]) }}">Delete</a>
                 </td>
             </tr>
         @endforeach

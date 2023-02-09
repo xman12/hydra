@@ -128,4 +128,27 @@ class AdminController extends Controller
 
         return redirect(route('responses'));
     }
+
+    public function deleteRoute(int $id)
+    {
+        Route::query()->where('id', '=', $id)->delete();
+
+        return redirect(route('routes'));
+    }
+
+    public function deleteRequest(int $id)
+    {
+        RequestModel::query()->where('id', '=', $id)->delete();
+
+        return redirect(route('requests'));
+    }
+
+    public function deleteResponse(int $id)
+    {
+        Response::query()->where('id', '=', $id)->delete();
+
+        return redirect(route('responses'));
+    }
+
+
 }
