@@ -13,24 +13,25 @@ class AddSystemTables extends Migration
      */
     public function up()
     {
-        Schema::create('request', static function(Blueprint $table) {
+        Schema::create('request', static function (Blueprint $table) {
             $table->increments('id');
             $table->string('body')->nullable();
-            $table->integer('http_code');
             $table->string('method');
+            $table->string('name')->nullable();
             $table->integer('route_id')->index();
         });
 
-        Schema::create('route', static function(Blueprint $table) {
-           $table->increments('id');
-           $table->string('name');
-           $table->string('route')->index();
+        Schema::create('route', static function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('route')->index();
         });
 
-        Schema::create('response', static function(Blueprint $table) {
-           $table->increments('id');
-           $table->string('body')->nullable();
-           $table->string('request_id')->index();
+        Schema::create('response', static function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('body')->nullable();
+            $table->integer('http_code');
+            $table->string('request_id')->index();
         });
     }
 
