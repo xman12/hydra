@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\RequestLog;
 use App\Models\Route;
 use Illuminate\Http\Request;
 use App\Models\Request as RequestModel;
@@ -9,6 +10,13 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RouteService
 {
+    protected RequestLog $requestLog;
+
+    public function __construct(RequestLog $requestLog)
+    {
+        $this->requestLog = $requestLog;
+    }
+
     /**
      * @throws \JsonException
      */
@@ -30,9 +38,20 @@ class RouteService
             throw new NotFoundHttpException('Error, response not found');
         }
 
+        $this->addLog($request, $requestsData);
+
         return [
             'body' => json_decode($response->body, true, 512, JSON_THROW_ON_ERROR),
             'http_code' => $response->http_code,
         ];
+    }
+
+    private function addLog(Request $request, RequestModel $requestModel)
+    {
+        $requestLog = clone $this->requestLog;
+        $requestLog->headers = $request->headers->all();
+        $requestLog->body = $request->getContent();
+        $requestLog->request_id = $requestModel->id;
+        $requestLog->save();
     }
 }

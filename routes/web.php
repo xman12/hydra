@@ -21,7 +21,7 @@ Route::controller(\App\Http\Controllers\AdminController::class)
         Route::get('/routes', 'routesIndexAction')->name('routes');
         Route::get('/responses', 'responseIndexAction')->name('responses');
         Route::get('/', 'indexAction')->name('main');
-
+        Route::get('/logs/{id}', 'showRequestLog')->name('log.index');
 
         Route::get('/requests/add', 'addRequestAction')->name('request.add');
         Route::get('/routes/add', 'addRouteAction')->name('route.add');

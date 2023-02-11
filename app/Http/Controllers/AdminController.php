@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Request as RequestModel;
+use App\Models\RequestLog;
 use App\Models\Response;
 use App\Models\Route;
 use Illuminate\Http\Request;
@@ -68,6 +69,14 @@ class AdminController extends Controller
             'requests' => RequestModel::all(),
         ]);
     }
+
+    public function showRequestLog(int $id)
+    {
+        $requestLogs = RequestLog::query()->where('request_id', '=', $id)->get();
+
+        return view('admin.log.index', ['logs' => $requestLogs]);
+    }
+
 
     public function addRequestAction()
     {

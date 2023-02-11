@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property int $route_id
  * @property Response $response
  * @property Route $route
+ * @property RequestLog[] $requestLog
  */
 class Request extends Model
 {
@@ -27,4 +28,10 @@ class Request extends Model
     {
         return $this->hasOne(Route::class, 'id', 'route_id');
     }
+
+    public function requestLog()
+    {
+        return $this->hasMany(RequestLog::class, 'request_id', 'id');
+    }
+
 }
