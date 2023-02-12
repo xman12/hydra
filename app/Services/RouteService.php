@@ -49,7 +49,7 @@ class RouteService
     private function addLog(Request $request, RequestModel $requestModel)
     {
         $requestLog = clone $this->requestLog;
-        $requestLog->headers = $request->headers->all();
+        $requestLog->headers = json_encode($request->headers->all());
         $requestLog->body = $request->getContent();
         $requestLog->request_id = $requestModel->id;
         $requestLog->save();

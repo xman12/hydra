@@ -25,17 +25,21 @@
             <th>Route</th>
         </tr>
         @foreach ($requests as $request)
-            <tr>
-                <td>{{ $request->body }}</td>
-                <td>{{ $request->method }}</td>
-                <td>
-                    {{ $request->route->name }}
-                </td>
-                <td>
-                    <a class="btn btn-primary" href="{{ route('request.edit', ['id' => $request->id]) }}">Edit</a>
-                    <a class="btn btn-danger" href="{{ route('request.delete', ['id' => $request->id]) }}">Delete</a>
-                </td>
-            </tr>
+            @if ($request->route)
+                <tr>
+                    <td>{{ $request->body }}</td>
+                    <td>{{ $request->method }}</td>
+                    <td>
+                        {{ $request->route->name }}
+                    </td>
+                    <td>
+                        <a class="btn btn-success" href="{{ route('log.index', ['id'=> $request->id]) }}">Logs</a>
+                        <a class="btn btn-primary" href="{{ route('request.edit', ['id' => $request->id]) }}">Edit</a>
+                        <a class="btn btn-danger"
+                           href="{{ route('request.delete', ['id' => $request->id]) }}">Delete</a>
+                    </td>
+                </tr>
+            @endif
         @endforeach
     </table>
 
