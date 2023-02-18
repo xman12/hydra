@@ -42,6 +42,13 @@
 
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>Active:</strong>
+                    <input type="checkbox" name="active" placeholder="Active" value="1" @if($request->active) checked @endif>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>Route:</strong>
                     <select name="route_id">
                         @foreach($routes as $route)

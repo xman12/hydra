@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $body
  * @property string $method
  * @property int $route_id
+ * @property boolean $active
  * @property Response $response
  * @property Route $route
  * @property RequestLog[] $requestLog
@@ -18,6 +19,10 @@ class Request extends Model
 {
     protected $table = 'request';
     public $timestamps = false;
+
+    protected $casts = [
+        'active' => 'boolean',
+    ];
 
     public function response(): HasOne
     {

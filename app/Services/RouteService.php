@@ -23,7 +23,10 @@ class RouteService
     public function getResponse(string $route, Request $request): array
     {
         /** @var Route $route */
-        $routeData = Route::query()->where('route', '=', $route)->first();
+        $routeData = Route::query()
+            ->where('route', '=', $route)
+            ->first()
+        ;
         if (null === $routeData) {
             throw new NotFoundHttpException('Error, route not found');
         }

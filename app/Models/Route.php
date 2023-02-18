@@ -22,6 +22,9 @@ class Route extends Model
 
     public function requestsWithMethod(string $method): HasMany
     {
-        return $this->requests()->where('method', '=', $method);
+        return $this->requests()
+            ->where('active','=', true)
+            ->where('method', '=', $method)
+            ;
     }
 }
