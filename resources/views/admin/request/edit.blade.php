@@ -52,7 +52,7 @@
                     <strong>Route:</strong>
                     <select name="route_id">
                         @foreach($routes as $route)
-                            <option value="{{ $route->id }}" @if($route->id === $request->route_id)selected @endif>{{ $route->name }}</option>
+                            <option value="{{ $route->id }}" @if($route->id == $request->route_id)selected @endif>{{ $route->name }}</option>
                         @endforeach
                     </select>
                 </div>
