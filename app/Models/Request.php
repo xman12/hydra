@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $body
  * @property string $method
  * @property int $route_id
+ * @property string $name
  * @property boolean $active
  * @property Response $response
  * @property Route $route

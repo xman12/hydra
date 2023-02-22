@@ -105,6 +105,7 @@ class AdminController extends Controller
 
         $requestModel->body = $request->input('body');
         $requestModel->method = $request->input('method');
+        $requestModel->name = $request->input('name');
         $requestModel->route_id = $request->input('route_id');
         $requestModel->active = $request->input('active', false);
         $requestModel->save();
